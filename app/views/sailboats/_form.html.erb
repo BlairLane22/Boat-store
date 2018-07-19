@@ -22,7 +22,7 @@
 
         <div class="field">
           <div class="control">
-            <%= f.input :length, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+            <%= f.input :model, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
           </div>
         </div>
 
@@ -81,7 +81,7 @@
             <label class="label">Add images</label>
               <div class="file">
               <label class="file-label">
-                <%= f.input :image, as: :file, input_html: { class:"file-input instrument-image" }, label: false, wrapper: false %>
+                <%= f.input :image, as: :file, input_html: { class:"file-input instrument-image" }, label: false, wrapper: false, hint: "Is highly recommended" %>
                   <span class="file-cta">
                     <span class="file-icon"><i class="fa fa-upload"></i></span>
                     <span class="file-label">Choose a file…</span>

@@ -2,7 +2,7 @@ class CreateSailboats < ActiveRecord::Migration[5.2]
   def change
     create_table :sailboats do |t|
       t.string :brand
-      t.integer :length
+      t.string :model
       t.text :description
       t.string :condition
       t.string :finish

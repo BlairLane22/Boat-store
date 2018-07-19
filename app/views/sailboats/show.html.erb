@@ -5,21 +5,13 @@
     <div class="column is-8">
       <h1 class="title is-2"><%= @sailboat.title %></h1>
 
-      <ul class="pv1">
-        <% if @sailboat.brand? %>
-        <li class="inline-block pr3"><%= @sailboat.brand %></li>
-        <% end %>
-
-        <li class="inline-block pr3"><%= @sailboat.model %></li>
-
-        <% if @sailboat.condition? %>
-        <li class="inline-block pr3"><%= @sailboat.condition %></li>
-        <% end %>
-      </ul>
-
-      <div class="feature-image">
-        <%= image_tag(@sailboat.image_url(:default)) %>
-      </div>
+        <div class="feature-image">
+          <% if @sailboat.image? %>
+            <%= image_tag(@sailboat.image_url(:default)) %>
+          <% else %>
+            <p>Product has not image.</p>
+          <% end %>
+        </div>
 
       <div class="content pa4 mt3 bg-white border-radius-3">
 
@@ -44,17 +36,12 @@
           </tr>
         <% end %>
 
-        <% if @sailboat.length %>
+        <% if @sailboat.model %>
           <tr>
-            <td class="has-text-weight-bold">Length:</td>
-            <td><%= @sailboat.length %></td>
+            <td class="has-text-weight-bold">Model:</td>
+            <td><%= @sailboat.model %></td>
           </tr>
         <% end %>
-
-        <tr>
-          <td class="has-text-weight-bold">Model:</td>
-          <td><%= @sailboat.model %></td>
-        </tr>
       </table>
     </div>
     </div>
@@ -62,12 +49,13 @@
       <div class="bg-white pa4 border-radius-3">
         <h4 class="title is-5 has-text-centered"><%= number_to_currency(@sailboat.price) %></h4>
         <p class="has-text-centered mb4">Sold by <%= @sailboat.user.name %></p>
-        <%= button_to 'Add to cart', line_items_path(sailboat_id: @sailboat), class: 'button is-warning add-to-cart' %>
+        <%#= button_to 'Add to cart', line_items_path(sailboat_id: @sailboat), class: 'button is-warning add-to-cart' %>
       </div>
     </div>
   </div>
 
-  <% if sailboat_author(@sailboat) %>
+  <% if user_signed_in? && current_user.id == @sailboat.user_id %>
     <%= link_to 'Edit', edit_sailboat_path(@sailboat), class: 'button' %>
   <% end %>
+  <%= link_to 'Back', sailboats_path, class: 'button' %>
 </section>

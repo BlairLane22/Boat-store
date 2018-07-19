@@ -15,30 +15,33 @@
 
     <div class="sailboat border-light">
       <div class="sailboat-thumb">
-      <%= link_to image_tag(sailboat.image_url(:thumb)), sailboat %>
-
-      <% if sailboat.condition? %>
-        <div class="condition">
-          <span class="tag is-dark"><%= sailboat.condition %></span>
-        </div>
-      <% end %>
+        <% if sailboat.image? %>
+          <%= link_to image_tag(sailboat.image_url(:thumb)), sailboat %>
+          <% if sailboat.condition? %>
+            <div class="condition">
+              <span class="tag is-dark"><%= sailboat.condition %></span>
+            </div>
+          <% end %>
+        <% else %>
+          <p>Product has not image, sorry.</p>
+        <% end %>
       </div>
 
 
-    <div class="pa3">
+      <div class="pa3">
 
-      <h3 class="fw7 f4 title"><%= link_to sailboat.title, sailboat %></h3>
+        <h3 class="fw7 f4 title"><%= link_to sailboat.title, sailboat %></h3>
 
-      <p class="has-text-gray fg pt1">Sold by <%= sailboat.user.name %></p>
+        <p class="has-text-gray fg pt1">Sold by <%= sailboat.user.name %></p>
 
-      <p class="f3 fw6 has-text-right pt2 price"><%= number_to_currency(sailboat.price) %></p>
+        <p class="f3 fw6 has-text-right pt2 price"><%= number_to_currency(sailboat.price) %></p>
 
-      <% if sailboat_author(sailboat) %>
-         <%= link_to 'Edit', edit_sailboat_path(sailboat), class: "button is-small" %>
-         <%= link_to 'Delete', sailboat, method: :delete, data: { confirm: "Are you sure ?" }, class: "button is-small" %>
-      <% end %>
+        <% if user_signed_in? && current_user.id == @sailboat.user_id %>
+           <%= link_to 'Edit', edit_sailboat_path(sailboat), class: "button is-small" %>
+           <%= link_to 'Delete', sailboat, method: :delete, data: { confirm: "Are you sure you want to delete #{sailboat.name}?" }, class: "button is-small" %>
+        <% end %>
 
+      </div>
     </div>
-  </div>
   <% end %>
 </div>

@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2018_07_18_220428) do
 
   create_table "sailboats", force: :cascade do |t|
     t.string "brand"
-    t.integer "length"
+    t.string "model"
     t.text "description"
     t.string "condition"
     t.string "finish"
