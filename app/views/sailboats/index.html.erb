@@ -36,9 +36,9 @@
 
         <p class="f3 fw6 has-text-right pt2 price"><%= number_to_currency(sailboat.price) %></p>
 
-        <% if user_signed_in? && current_user.id == @sailboat.user_id %>
+        <% if user_signed_in? && current_user.id == sailboat.user_id %>
            <%= link_to 'Edit', edit_sailboat_path(sailboat), class: "button is-small" %>
-           <%= link_to 'Delete', sailboat, method: :delete, data: { confirm: "Are you sure you want to delete #{sailboat.name}?" }, class: "button is-small" %>
+           <%= link_to 'Delete', sailboat, method: :delete, data: { confirm: "Are you sure you want to delete #{sailboat.title}?" }, class: "button is-small" %>
         <% end %>
 
       </div>

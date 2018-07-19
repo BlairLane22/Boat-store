@@ -15,41 +15,50 @@
 
       <div class="content pa4 mt3 bg-white border-radius-3">
 
-      <h3 class="subtitle is-4">Description</h3>
-      <%= @sailboat.description %>
+        <h3 class="subtitle is-4">Description</h3>
+        <%= @sailboat.description %>
 
 
-      <h3 class="subtitle is-4 pt5">Product Specs</h3>
+        <h3 class="subtitle is-4 pt5">Product Specs</h3>
 
-      <table class="table is-narrow">
-        <% if @sailboat.condition %>
-        <tr>
-          <td class="has-text-weight-bold">Condition:</td>
-          <td><%= @sailboat.condition %></td>
-        </tr>
-        <% end %>
-
-        <% if @sailboat.finish %>
+        <table class="table is-narrow">
+          <% if @sailboat.condition %>
           <tr>
-            <td class="has-text-weight-bold">Finish:</td>
-            <td><%= @sailboat.finish %></td>
+            <td class="has-text-weight-bold">Condition:</td>
+            <td><%= @sailboat.condition %></td>
           </tr>
-        <% end %>
+          <% end %>
 
-        <% if @sailboat.model %>
+          <% if @sailboat.finish %>
+            <tr>
+              <td class="has-text-weight-bold">Finish:</td>
+              <td><%= @sailboat.finish %></td>
+            </tr>
+          <% end %>
+
+          <% if @sailboat.model %>
+            <tr>
+              <td class="has-text-weight-bold">Model:</td>
+              <td><%= @sailboat.model %></td>
+            </tr>
+          <% end %>
+
           <tr>
-            <td class="has-text-weight-bold">Model:</td>
-            <td><%= @sailboat.model %></td>
+            <td class="has-text-weight-bold">Length:</td>
+            <td><%= @sailboat.length %>m (<%= @sailboat.length * 3.2808 %>ft)</td>
           </tr>
-        <% end %>
-      </table>
-    </div>
+
+        </table>
+      </div>
     </div>
     <div class="column is-3 is-offset-1">
       <div class="bg-white pa4 border-radius-3">
         <h4 class="title is-5 has-text-centered"><%= number_to_currency(@sailboat.price) %></h4>
         <p class="has-text-centered mb4">Sold by <%= @sailboat.user.name %></p>
-        <%#= button_to 'Add to cart', line_items_path(sailboat_id: @sailboat), class: 'button is-warning add-to-cart' %>
+
+        <% if user_signed_in? && current_user.id != @sailboat.user_id %>
+          <%= link_to 'Interested?', sailboats_path, class: 'button mh5' %>
+        <% end %>
       </div>
     </div>
   </div>

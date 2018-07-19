@@ -1,6 +1,6 @@
 class SailboatsController < ApplicationController
   before_action :set_sailboat, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :my_products]
 
   # GET /sailboats
   # GET /sailboats.json
@@ -62,6 +62,10 @@ class SailboatsController < ApplicationController
     end
   end
 
+  def my_products
+    @sailboats = Sailboat.all.order("created_at desc")
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sailboat
@@ -70,6 +74,6 @@ class SailboatsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sailboat_params
-      params.require(:sailboat).permit(:brand, :model, :description, :condition, :finish, :title, :price, :image)
+      params.require(:sailboat).permit(:length, :brand, :model, :description, :condition, :finish, :title, :price, :image)
     end
 end
