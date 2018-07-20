@@ -1,6 +1,6 @@
 class Sailboat < ApplicationRecord
   mount_uploader :image, ImageUploader
-  serialize :image, JSON
+  # serialize :image, JSON
 
   belongs_to :user, optional: true
 
