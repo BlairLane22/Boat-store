@@ -29,7 +29,7 @@ class SailboatsController < ApplicationController
 
     respond_to do |format|
       if @sailboat.save
-        format.html { redirect_to @sailboat, notice: 'Sailboat was successfully created.' }
+        format.html { redirect_to @sailboat, notice: "#{@sailboat.title.capitalize} was successfully created." }
         format.json { render :show, status: :created, location: @sailboat }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class SailboatsController < ApplicationController
   def update
     respond_to do |format|
       if @sailboat.update(sailboat_params)
-        format.html { redirect_to @sailboat, notice: 'Sailboat was successfully updated.' }
+        format.html { redirect_to @sailboat, notice: "#{@sailboat.title.capitalize} was successfully updated." }
         format.json { render :show, status: :ok, location: @sailboat }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class SailboatsController < ApplicationController
   def destroy
     @sailboat.destroy
     respond_to do |format|
-      format.html { redirect_to sailboats_url, notice: 'Sailboat was successfully destroyed.' }
+      format.html { redirect_to sailboats_url, notice: "#{@sailboat.title.capitalize} was successfully destroyed." }
       format.json { head :no_content }
     end
   end

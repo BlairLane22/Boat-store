@@ -4,7 +4,7 @@
     <% if current_user.id == sailboat.user_id %>
 
     <% count += 1 %>
-      <div class="sailboat border-light">
+      <div class="sailboat border-light" style="margin-bottom: 12%; margin-right: 3%;">
         <div class="sailboat-thumb">
           <% if sailboat.image? %>
             <%= link_to image_tag(sailboat.image_url(:thumb)), sailboat %>

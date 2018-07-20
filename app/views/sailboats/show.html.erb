@@ -3,11 +3,11 @@
 <section class="section sailboat-show">
   <div class="columns">
     <div class="column is-8">
-      <h1 class="title is-2"><%= @sailboat.title %></h1>
+      <h1 class="title is-2"><%= @sailboat.title.capitalize %></h1>
 
         <div class="feature-image">
           <% if @sailboat.image? %>
-            <%= image_tag(@sailboat.image_url(:default)) %>
+            <%= image_tag(@sailboat.image_url(:default), class: 'border-3 border-radius-3') %>
           <% else %>
             <p>Product has not image.</p>
           <% end %>
@@ -16,7 +16,7 @@
       <div class="content pa4 mt3 bg-white border-radius-3">
 
         <h3 class="subtitle is-4">Description</h3>
-        <%= @sailboat.description %>
+        <%= @sailboat.description.capitalize %>
 
 
         <h3 class="subtitle is-4 pt5">Product Specs</h3>
@@ -39,7 +39,7 @@
           <% if @sailboat.model %>
             <tr>
               <td class="has-text-weight-bold">Model:</td>
-              <td><%= @sailboat.model %></td>
+              <td><%= @sailboat.model.capitalize %></td>
             </tr>
           <% end %>
 
@@ -57,7 +57,7 @@
         <p class="has-text-centered mb4">Sold by <%= @sailboat.user.name %></p>
 
         <% if user_signed_in? && current_user.id != @sailboat.user_id %>
-          <%= link_to 'Interested?', sailboats_path, class: 'button mh5' %>
+          <%= link_to 'Interested?', sailboats_path, class: 'button mh5', data: { confirm: "An email will be sent saying you are interested in #{@sailboat.user.name.pluralize} product." } %>
         <% end %>
       </div>
     </div>
