@@ -7,7 +7,7 @@ class CreateSailboats < ActiveRecord::Migration[5.2]
       t.string :condition
       t.string :finish
       t.string :title
-      t.bigserial :price, default: 0
+      t.integer :price, default: 0
 
       t.timestamps
     end
