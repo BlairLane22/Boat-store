@@ -7,7 +7,7 @@ class CreateSailboats < ActiveRecord::Migration[5.2]
       t.string :condition
       t.string :finish
       t.string :title
-      t.decimal :price, default: 0
+      t.decimal :price, precision: 10, default: 0
 
       t.timestamps
     end
