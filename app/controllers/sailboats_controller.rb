@@ -74,6 +74,6 @@ class SailboatsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sailboat_params
-      params.require(:sailboat).permit(:length, :brand, :model, :description, :condition, :finish, :title, :price, :image)
+      params.require(:sailboat).permit(:length, :brand, :model, :description, :condition, :color, :title, :price, :image)
     end
 end

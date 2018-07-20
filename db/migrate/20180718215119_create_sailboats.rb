@@ -5,7 +5,7 @@ class CreateSailboats < ActiveRecord::Migration[5.2]
       t.string :model
       t.text :description
       t.string :condition
-      t.string :finish
+      t.string :color
       t.string :title
       t.decimal :price, default: 0
 

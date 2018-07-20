@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2018_07_19_203827) do
     t.string "model"
     t.text "description"
     t.string "condition"
-    t.string "finish"
+    t.string "color"
     t.string "title"
     t.decimal "price", default: "0.0"
     t.datetime "created_at", null: false
