@@ -11,6 +11,7 @@ class SailboatsController < ApplicationController
   # GET /sailboats/1
   # GET /sailboats/1.json
   def show
+    @length = Sailboat.length(@sailboat.length)
   end
 
   # GET /sailboats/new
