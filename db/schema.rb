@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_19_203827) do
+ActiveRecord::Schema.define(version: 2018_07_21_213618) do
 
   create_table "sailboats", force: :cascade do |t|
     t.string "brand"
     t.string "model"
     t.text "description"
     t.string "condition"
-    t.string "color"
     t.string "title"
     t.decimal "price", default: "0.0"
     t.datetime "created_at", null: false
@@ -25,6 +24,7 @@ ActiveRecord::Schema.define(version: 2018_07_19_203827) do
     t.string "image"
     t.integer "user_id"
     t.integer "length"
+    t.string "color"
   end
 
   create_table "users", force: :cascade do |t|
