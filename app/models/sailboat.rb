@@ -9,9 +9,9 @@ class Sailboat < ApplicationRecord
   validates :title, length: { maximum: 140, too_long: "#{count} characters is the maximum allowed" }
   validates_numericality_of :price, :length
 
-  BRAND = %w{ Fender Gibson Epiphone ESP Martin Dean Taylor Jackson PRS  Ibanez Charvel Washburn }
-  COLOR = %w{ Black White Navy Blue Red Satin Yellow }
-  CONDITION = %w{ New Excellent Mint Used Fair Poor }
+  BRAND = ["Jeanneau", "Wally", "Dehler", "Hanse Yachts"]
+  COLOR = ["Black", "White", "Navy", "Blue", "Red", "Satin", "Yellow"]
+  CONDITION = ["New", "Excellent", "Mint", "Used", "Fair", "Poor"]
 
 
   def self.length(length)
