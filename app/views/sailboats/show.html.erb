@@ -72,8 +72,15 @@
   <% if user_signed_in? && current_user.id == @sailboat.user_id %>
     <%= link_to 'Edit', edit_sailboat_path(@sailboat), class: 'button' %>
   <% end %>
+  
   <%= link_to 'Back', sailboats_path, class: 'button' %>
+
+  <% signed_in_confirm = "An email will be sent saying you are interested in #{@sailboat.user.name.pluralize.capitalize} boat." %>
+  <% not_signed_in_confirm = "Please sign in or sign up before proceeding." %>
+
   <% if user_signed_in? && current_user.id != @sailboat.user_id %>
-    <%= link_to 'Interested?', sailboats_path, class: 'button', data: { confirm: "An email will be sent saying you are interested in #{@sailboat.user.name.pluralize.capitalize} boat." } %>
+    <%= link_to 'Interested?', sailboats_path, class: 'button', data: { confirm: "#{ signed_in_confirm }" } %>
+  <% else %>
+    <%= link_to 'Interested?', new_user_registration_path, class: 'button', data: { confirm: "#{ not_signed_in_confirm }" } %>
   <% end %>
 </section>
