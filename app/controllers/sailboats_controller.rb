@@ -12,6 +12,7 @@ class SailboatsController < ApplicationController
   # GET /sailboats/1.json
   def show
     @length = Sailboat.length(@sailboat.length)
+    @viewed = Sailboat.viewed(@sailboat.viewed)
   end
 
   # GET /sailboats/new
@@ -75,6 +76,6 @@ class SailboatsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sailboat_params
-      params.require(:sailboat).permit(:length, :brand, :model, :description, :condition, :color, :title, :price, :image)
+      params.require(:sailboat).permit(:length, :brand, :model, :description, :condition, :color, :title, :price, :image, :category)
     end
 end

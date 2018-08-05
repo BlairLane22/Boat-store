@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_21_213618) do
+ActiveRecord::Schema.define(version: 2018_07_29_044028) do
 
   create_table "sailboats", force: :cascade do |t|
     t.string "brand"
@@ -23,8 +23,10 @@ ActiveRecord::Schema.define(version: 2018_07_21_213618) do
     t.datetime "updated_at", null: false
     t.string "image"
     t.integer "user_id"
-    t.integer "length"
+    t.decimal "length"
     t.string "color"
+    t.integer "viewed", default: 0
+    t.string "category"
   end
 
   create_table "users", force: :cascade do |t|

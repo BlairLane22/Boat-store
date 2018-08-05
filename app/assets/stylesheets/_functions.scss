@@ -4,6 +4,7 @@
  --spacing-small: .5rem;
  --spacing-medium: 1rem;
  --spacing-large: 2rem;
+ --spacing-larger: 2.7rem;
  --spacing-extra-large: 4rem;
  --spacing-extra-extra-large: 8rem;
  --spacing-extra-extra-extra-large: 16rem;
@@ -228,6 +229,12 @@
  margin-left: var(--spacing-large);
  margin-right: var(--spacing-large);
 }
+
+.mh4-5   {
+ margin-left: var(--spacing-larger);
+ margin-right: var(--spacing-larger);
+}
+
 .mh5   {
  margin-left: var(--spacing-extra-large);
  margin-right: var(--spacing-extra-large);

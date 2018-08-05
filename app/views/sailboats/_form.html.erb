@@ -33,12 +33,27 @@
         </div>
 
         <div class="columns">
+
+          <div class="field column is-4">
+            <div class="control">
+              <label class="label">Category</label>
+              <div class="control has-icons-left">
+                <span class="select">
+                  <%= f.input_field :category, collection: Sailboat::CATEGORY, prompt: "Select Category" %>
+                </span>
+                <span class="icon is-small is-left">
+                  <i class="fa fa-tag"></i>
+                </span>
+              </div>
+            </div>
+           </div>
+
           <div class="field column is-4">
             <div class="control">
               <label class="label">Brand</label>
               <div class="control has-icons-left">
                 <span class="select">
-                  <%= f.input_field :brand, collection: Sailboat::BRAND, prompt: "Select brand" %>
+                  <%= f.input_field :brand, collection: Sailboat::BRAND, prompt: "Select Brand" %>
                 </span>
                 <span class="icon is-small is-left">
                   <i class="fa fa-tag"></i>
@@ -66,7 +81,7 @@
               <label class="label">Condition</label>
               <div class="control has-icons-left">
                 <span class="select">
-                  <%= f.input_field :condition, collection: Sailboat::CONDITION, prompt: "Select condition" %>
+                  <%= f.input_field :condition, collection: Sailboat::CONDITION, prompt: "Select Condition" %>
                 </span>
                 <span class="icon is-small is-left">
                   <i class="fa fa-paint-brush"></i>
@@ -78,17 +93,17 @@
 
          <div class="field column is-4">
            <div class="control">
-             <%= f.input :length, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" }, hint: "(In meters)" %>
+             <%= f.input :length, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" }, hint: "(In feet)" %>
            </div>
          </div>
 
 
         <div class="field">
           <div class="control">
-            <label class="label">Add images</label>
+            <label class="label">Add image</label>
               <div class="file">
               <label class="file-label">
-                <%= f.input :image, as: :file, input_html: { class:"file-input instrument-image" }, label: false, wrapper: false, hint: "Is highly recommended" %>
+                <%= f.input :image, as: :file, input_html: { class:"file-input instrument-image" }, label: false, wrapper: false, hint: "Highly recommended" %><p>
                   <span class="file-cta">
                     <span class="file-icon"><i class="fa fa-upload"></i></span>
                     <span class="file-label">Choose a file…</span>

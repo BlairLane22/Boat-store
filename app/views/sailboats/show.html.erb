@@ -1,5 +1,7 @@
 <% content_for :body_class, 'bg-light' %>
 
+<% @length %>
+
 <section class="section sailboat-show">
   <div class="columns">
     <div class="column is-8">
@@ -22,11 +24,19 @@
         <h3 class="subtitle is-4 pt5">Product Specs</h3>
 
         <table class="table is-narrow">
+
+          <% if @sailboat.category %>
+            <tr>
+              <td class="has-text-weight-bold">Category:</td>
+              <td><%= @sailboat.category %></td>
+            </tr>
+          <% end %>
+
           <% if @sailboat.condition %>
-          <tr>
-            <td class="has-text-weight-bold">Condition:</td>
-            <td><%= @sailboat.condition %></td>
-          </tr>
+            <tr>
+              <td class="has-text-weight-bold">Condition:</td>
+              <td><%= @sailboat.condition %></td>
+            </tr>
           <% end %>
 
           <% if @sailboat.color %>
@@ -45,7 +55,7 @@
 
           <tr>
             <td class="has-text-weight-bold">Length:</td>
-            <td><%= @sailboat.length %>m (<%= @length %>ft)</td>
+            <td><%= @sailboat.length %>ft (<%= @length.round(2) %>m)</td>
           </tr>
 
         </table>
@@ -54,11 +64,7 @@
     <div class="column is-3 is-offset-1">
       <div class="bg-white pa4 border-radius-3">
         <h4 class="title is-5 has-text-centered"><%= number_to_currency(@sailboat.price) %></h4>
-        <p class="has-text-centered mb4">Sold by <%= @sailboat.user.name %></p>
-
-        <% if user_signed_in? && current_user.id != @sailboat.user_id %>
-          <%= link_to 'Interested?', sailboats_path, class: 'button mh5', data: { confirm: "An email will be sent saying you are interested in #{@sailboat.user.name.pluralize} product." } %>
-        <% end %>
+        <p class="has-text-centered mb4">Sold by <%= @sailboat.user.name.capitalize %></p>
       </div>
     </div>
   </div>
@@ -67,4 +73,7 @@
     <%= link_to 'Edit', edit_sailboat_path(@sailboat), class: 'button' %>
   <% end %>
   <%= link_to 'Back', sailboats_path, class: 'button' %>
+  <% if user_signed_in? && current_user.id != @sailboat.user_id %>
+    <%= link_to 'Interested?', sailboats_path, class: 'button', data: { confirm: "An email will be sent saying you are interested in #{@sailboat.user.name.pluralize.capitalize} boat." } %>
+  <% end %>
 </section>
