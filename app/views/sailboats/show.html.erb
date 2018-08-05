@@ -72,7 +72,7 @@
   <% if user_signed_in? && current_user.id == @sailboat.user_id %>
     <%= link_to 'Edit', edit_sailboat_path(@sailboat), class: 'button' %>
   <% end %>
-  
+
   <%= link_to 'Back', sailboats_path, class: 'button' %>
 
   <% signed_in_confirm = "An email will be sent saying you are interested in #{@sailboat.user.name.pluralize.capitalize} boat." %>
