@@ -22,5 +22,4 @@ class Sailboat < ApplicationRecord
   def self.viewed(viewed)
     viewed += 1
   end
-
 end

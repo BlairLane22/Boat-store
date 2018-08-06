@@ -24,7 +24,7 @@
 
         <h3 class="fw7 f4 title"><%= link_to sailboat.title.capitalize, sailboat %></h3>
 
-        <p class="has-text-gray fg pt1">Sold by <%= sailboat.user.name.capitalize %></p>
+        <p class="has-text-gray fg pt1">Sold by <%= sailboat.user.name.titleize %></p>
         <% if sailboat.category %>
           <p class="has-text-gray fg pt1">Category: <%= sailboat.category.capitalize %></p>
         <% end %>

@@ -1,7 +1,5 @@
 <% content_for :body_class, 'bg-light' %>
 
-<% @length %>
-
 <section class="section sailboat-show">
   <div class="columns">
     <div class="column is-8">
@@ -64,7 +62,7 @@
     <div class="column is-3 is-offset-1">
       <div class="bg-white pa4 border-radius-3">
         <h4 class="title is-5 has-text-centered"><%= number_to_currency(@sailboat.price) %></h4>
-        <p class="has-text-centered mb4">Sold by <%= @sailboat.user.name.capitalize %></p>
+        <p class="has-text-centered mb4">Sold by <%= @sailboat.user.name.titleize %></p>
       </div>
     </div>
   </div>
@@ -75,11 +73,13 @@
 
   <%= link_to 'Back', sailboats_path, class: 'button' %>
 
-  <% signed_in_confirm = "An email will be sent saying you are interested in #{@sailboat.user.name.pluralize.capitalize} boat." %>
+  <% signed_in_confirm = "An email will be sent saying you are interested in #{@sailboat.user.name.pluralize.titleize} boat." %>
   <% not_signed_in_confirm = "Please sign in or sign up before proceeding." %>
 
   <% if user_signed_in? && current_user.id != @sailboat.user_id %>
     <%= link_to 'Interested?', sailboats_path, class: 'button', data: { confirm: "#{ signed_in_confirm }" } %>
+  <% elsif user_signed_in? && current_user.id == @sailboat.user_id %>
+    <!-- NOTHING -->
   <% else %>
     <%= link_to 'Interested?', new_user_registration_path, class: 'button', data: { confirm: "#{ not_signed_in_confirm }" } %>
   <% end %>
