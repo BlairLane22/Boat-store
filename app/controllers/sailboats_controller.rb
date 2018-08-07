@@ -13,6 +13,8 @@ class SailboatsController < ApplicationController
   def show
     @length = Sailboat.length(@sailboat.length)
     @viewed = Sailboat.viewed(@sailboat.viewed)
+
+    @sailboat.punch(request)
   end
 
   # GET /sailboats/new

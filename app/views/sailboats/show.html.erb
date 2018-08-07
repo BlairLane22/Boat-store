@@ -62,7 +62,9 @@
     <div class="column is-3 is-offset-1">
       <div class="bg-white pa4 border-radius-3">
         <h4 class="title is-5 has-text-centered"><%= number_to_currency(@sailboat.price) %></h4>
-        <p class="has-text-centered mb4">Sold by <%= @sailboat.user.name.titleize %></p>
+
+        <% sold_by = user_signed_in? && current_user.id == @sailboat.user_id  ?  "you"  :  @sailboat.user.name.titleize %>
+        <p class="has-text-centered mb4">Sold by <%= sold_by %></p>
       </div>
     </div>
   </div>

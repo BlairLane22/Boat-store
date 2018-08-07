@@ -2,6 +2,8 @@ class Sailboat < ApplicationRecord
   mount_uploader :image, ImageUploader
   # serialize :image, JSON
 
+  acts_as_punchable
+
   belongs_to :user, optional: true
 
   validates :title, :brand, :price, :model, :length, :category, :condition, :color, presence: true
