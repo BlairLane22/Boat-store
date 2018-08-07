@@ -5,7 +5,8 @@ class SailboatsController < ApplicationController
   # GET /sailboats
   # GET /sailboats.json
   def index
-    @sailboats = Sailboat.all.order("created_at desc")
+    @sailboats = Sailboat.all.order("created_at DESC")
+    # @highest_priced = Sailboat.all(:order)
   end
 
   # GET /sailboats/1
@@ -14,7 +15,11 @@ class SailboatsController < ApplicationController
     @length = Sailboat.length(@sailboat.length)
     @viewed = Sailboat.viewed(@sailboat.viewed)
 
-    @sailboat.punch(request)
+    if user_signed_in? && current_user.id != @sailboat.user_id
+      @sailboat.punch(request)
+    elsif user_signed_in? == false
+      @sailboat.punch(request)
+    end
   end
 
   # GET /sailboats/new

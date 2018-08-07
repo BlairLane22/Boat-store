@@ -1,3 +1,10 @@
+<h1>Top viewed:</h1>
+
+<%  %>
+
+
+
+
 <% count = 0 %>
 
 <div class="sailboat-index-grid pt4">
@@ -30,6 +37,7 @@
         <% if sailboat.category? %>
           <p class="has-text-gray fg pt1">Category: <%= sailboat.category.capitalize %></p>
         <% end %>
+        <p class="has-text-gray fg pt1">Viewed: <%= sailboat.hits %> <%= sailboat.hits == 1 ? "time" : "times" %></p>
 
         <p class="f3 fw6 has-text-right pt2 price"><%= number_to_currency(sailboat.price) %></p>
 
