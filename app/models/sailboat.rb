@@ -16,12 +16,4 @@ class Sailboat < ApplicationRecord
   CONDITION = ["New", "Excellent", "Mint", "Used", "Fair", "Poor", "Scraps"]
   CATEGORY = ["Sailboat", "Motor boat", "Luxery yacht", "Dingui"]
 
-
-  def self.length(length)
-    length / 3.280839895
-  end
-
-  def self.viewed(viewed)
-    viewed += 1
-  end
 end

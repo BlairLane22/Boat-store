@@ -53,7 +53,7 @@
 
           <tr>
             <td class="has-text-weight-bold">Length:</td>
-            <td><%= @sailboat.length %>ft (<%= @length.round(2) %>m)</td>
+            <td><%= @sailboat.length %>ft (<%= length_in_meters(@sailboat.length).round(2) %>m)</td>
           </tr>
 
         </table>
@@ -64,16 +64,20 @@
         <h4 class="title is-5 has-text-centered"><%= number_to_currency(@sailboat.price) %></h4>
 
         <% sold_by = user_signed_in? && current_user.id == @sailboat.user_id  ?  "you"  :  @sailboat.user.name.titleize %>
-        <p class="has-text-centered mb4">Sold by <%= sold_by %></p>
+        <p class="has-text-centered mb2">Sold by <%= sold_by %></p>
+
+        <% t = Time.parse(@sailboat.created_at.to_s) %>
+        <p class="has-text-gray has-text-centered mb2 f6">Created: <%= time_ago_in_words(t) %> ago </p>
+        <p class="has-text-gray has-text-centered fg mb1 f7">Viewed: <%= @sailboat.hits %> <%= @sailboat.hits == 1 ? "time" : "times" %></p>
       </div>
     </div>
   </div>
 
+  <%= link_to 'Back', sailboats_path, class: 'button' %>
+
   <% if user_signed_in? && current_user.id == @sailboat.user_id %>
     <%= link_to 'Edit', edit_sailboat_path(@sailboat), class: 'button' %>
   <% end %>
-
-  <%= link_to 'Back', sailboats_path, class: 'button' %>
 
   <% signed_in_confirm = "An email will be sent saying you are interested in #{@sailboat.user.name.pluralize.titleize} boat." %>
   <% not_signed_in_confirm = "Please sign in or sign up before proceeding." %>
