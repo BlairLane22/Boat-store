@@ -1,0 +1,92 @@
+<% content_for :body_class, 'bg-light' %>
+
+<section class="section boat-show">
+  <div class="columns">
+    <div class="column is-8">
+      <h1 class="title is-2"><%= @boat.title.capitalize %></h1>
+
+        <div class="feature-image">
+          <% if @boat.image? %>
+            <%= image_tag(@boat.image_url(:default), class: 'border-3 border-radius-3') %>
+          <% else %>
+            <p>Product has not image.</p>
+          <% end %>
+        </div>
+
+      <div class="content pa4 mt3 bg-white border-radius-3">
+
+        <h3 class="subtitle is-4">Description</h3>
+        <%= @boat.description.capitalize %>
+
+
+        <h3 class="subtitle is-4 pt5">Product Specs</h3>
+
+        <table class="table is-narrow">
+
+          <% if @boat.category %>
+            <tr>
+              <td class="has-text-weight-bold">Category:</td>
+              <td><%= @boat.category %></td>
+            </tr>
+          <% end %>
+
+          <% if @boat.condition %>
+            <tr>
+              <td class="has-text-weight-bold">Condition:</td>
+              <td><%= @boat.condition %></td>
+            </tr>
+          <% end %>
+
+          <% if @boat.color %>
+            <tr>
+              <td class="has-text-weight-bold">Color:</td>
+              <td><%= @boat.color %></td>
+            </tr>
+          <% end %>
+
+          <% if @boat.model %>
+            <tr>
+              <td class="has-text-weight-bold">Model:</td>
+              <td><%= @boat.model.capitalize %></td>
+            </tr>
+          <% end %>
+
+          <tr>
+            <td class="has-text-weight-bold">Length:</td>
+            <td><%= @boat.length %>ft (<%= length_in_meters(@boat.length).round(2) %>m)</td>
+          </tr>
+
+        </table>
+      </div>
+    </div>
+    <div class="column is-3 is-offset-1">
+      <div class="bg-white pa4 border-radius-3">
+        <h4 class="title is-5 has-text-centered"><%= number_to_currency(@boat.price) %></h4>
+
+        <% sold_by = user_signed_in? && current_user.id == @boat.user_id  ?  "you"  :  @boat.user.name.titleize %>
+        <p class="has-text-centered mb2">Sold by <%= sold_by %></p>
+
+        <% t = Time.parse(@boat.created_at.to_s) %>
+        <p class="has-text-gray has-text-centered mb2 f6">Created: <%= time_ago_in_words(t) %> ago </p>
+        <p class="has-text-gray has-text-centered fg mb1 f7">Viewed: <%= @boat.hits %> <%= @boat.hits == 1 ? "time" : "times" %></p>
+      </div>
+    </div>
+  </div>
+
+  <%= link_to 'Back', boats_path, class: 'button' %>
+
+  <% if user_signed_in? && current_user.id == @boat.user_id %>
+    <%= link_to 'Edit', edit_boat_path(@boat), class: 'button' %>
+  <% end %>
+
+  <% signed_in_confirm = "An email will be sent saying you are interested in #{@boat.user.name.pluralize.titleize} boat." %>
+  <% not_signed_in_confirm = "Please sign in or sign up before proceeding." %>
+
+  <% if user_signed_in? && current_user.id != @boat.user_id %>
+    <%= link_to 'Interested?', boats_path, class: 'button', data: { confirm: "#{ signed_in_confirm }" } %>
+  <% elsif user_signed_in? && current_user.id == @boat.user_id %>
+    <!-- NOTHING -->
+  <% else %>
+    <%= link_to 'Interested?', new_user_registration_path, class: 'button', data: { confirm: "#{ not_signed_in_confirm }" } %>
+  <% end %>
+</section>

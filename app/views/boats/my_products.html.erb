@@ -1,0 +1,59 @@
+<% content_for :header do %>
+<section class="hero is-warning">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Your Boats
+      </h1>
+    </div>
+  </div>
+</section>
+<% end %>
+
+<div class="boat-index-grid pt4">
+  <% count = 0 %>
+  <% @boats.each do |boat| %>
+    <% if current_user.id == boat.user_id %>
+
+    <% count += 1 %>
+      <div class="boat border-light" style="margin-bottom: 12%; margin-right: 3%;">
+        <div class="boat-thumb">
+          <% if boat.image? %>
+            <%= link_to image_tag(boat.image_url(:thumb)), boat %>
+            <% if boat.condition? %>
+              <div class="condition">
+                <span class="tag is-dark"><%= boat.condition %></span>
+              </div>
+            <% end %>
+          <% else %>
+            <p>Product has not image, sorry.</p>
+          <% end %>
+        </div>
+
+
+        <div class="pa3">
+
+          <h3 class="fw7 f4 title"><%= link_to boat.title.capitalize, boat %></h3>
+
+          <p class="has-text-gray fg pt1">Sold by you</p>
+          <p class="has-text-gray fg pt1">Viewed <%= boat.hits %> times</p>
+
+          <% t = Time.parse(boat.created_at.to_s) %>
+          <p class="has-text-gray fg pt1">Created: <%= time_ago_in_words(t) %> ago </p>
+
+          <p class="f3 fw6 has-text-right pt2 price"><%= number_to_currency(boat.price) %></p>
+
+          <%= link_to 'Edit', edit_boat_path(boat), class: "button is-small" %>
+          <%= link_to 'Delete', boat, method: :delete, data: { confirm: "Are you sure you want to delete #{boat.title.capitalize}?" }, class: "button is-small" %>
+
+        </div>
+      </div>
+
+    <% end %>
+
+  <% end %>
+</div>
+
+<% if count == 0 %>
+  <p>No boats were found. <%= link_to 'Sell Now', new_boat_path, class: "navbar-item button is-dark mt4" %>.</p>
+<% end %>

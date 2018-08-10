@@ -12,18 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2018_08_07_190350) do
 
-  create_table "punches", force: :cascade do |t|
-    t.integer "punchable_id", null: false
-    t.string "punchable_type", limit: 20, null: false
-    t.datetime "starts_at", null: false
-    t.datetime "ends_at", null: false
-    t.datetime "average_time", null: false
-    t.integer "hits", default: 1, null: false
-    t.index ["average_time"], name: "index_punches_on_average_time"
-    t.index ["punchable_type", "punchable_id"], name: "punchable_index"
-  end
-
-  create_table "sailboats", force: :cascade do |t|
+  create_table "boats", force: :cascade do |t|
     t.string "brand"
     t.string "model"
     t.text "description"
@@ -36,8 +25,18 @@ ActiveRecord::Schema.define(version: 2018_08_07_190350) do
     t.integer "user_id"
     t.decimal "length"
     t.string "color"
-    t.integer "viewed", default: 0
     t.string "category"
+  end
+
+  create_table "punches", force: :cascade do |t|
+    t.integer "punchable_id", null: false
+    t.string "punchable_type", limit: 20, null: false
+    t.datetime "starts_at", null: false
+    t.datetime "ends_at", null: false
+    t.datetime "average_time", null: false
+    t.integer "hits", default: 1, null: false
+    t.index ["average_time"], name: "index_punches_on_average_time"
+    t.index ["punchable_type", "punchable_id"], name: "punchable_index"
   end
 
   create_table "users", force: :cascade do |t|
