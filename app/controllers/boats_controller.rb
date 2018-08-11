@@ -7,7 +7,7 @@ class BoatsController < ApplicationController
   def index
     @boats = Boat.all.order("created_at DESC")
 
-    @highest_viewed = Boat.most_hit
+    @highest_viewed = Boat.most_hit(7.day.ago, 3)  # (number of days) (limit)
   end
 
   # GET /boats/1

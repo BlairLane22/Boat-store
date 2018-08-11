@@ -11,7 +11,7 @@ class Boat < ApplicationRecord
   validates :title, length: { maximum: 140, too_long: "#{count} characters is the maximum allowed" }
   validates_numericality_of :price, :length
 
-  BRAND = ["Jeanneau", "Wally", "Dehler", "Hanse Yachts"]
+  BRAND = ["Jeanneau", "Wally", "Dehler", "Hanse Yachts", "Beneteau", "Leopard", "Catalina Yachts"]
   COLOR = ["Black", "White", "Navy", "Blue", "Red", "Satin", "Yellow", "Orange", "Green", "Grey"]
   CONDITION = ["New", "Excellent", "Mint", "Used", "Fair", "Poor", "Scraps"]
   CATEGORY = ["Sailboat", "Motor boat", "Luxery yacht", "Dingui"]

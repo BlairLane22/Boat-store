@@ -4,12 +4,12 @@
   <% @highest_viewed.each do |boat| %>
 
     <% if count == 0 %>
-      <h1 class="title is-3 mt3">Top 5 viewed:</h1>
+      <h1 class="title is-3 mt3">Top 3 viewed:</h1>
     <% end %>
 
     <% count += 1 %>
 
-    <div class="boat border-light" style="margin-bottom: 4%;">
+    <div class="boat border-light" style="margin-bottom: 4%; margin-right: 3%; margin-left: 3%;">
       <div class="boat-thumb">
         <% if boat.image? %>
           <%= link_to image_tag(boat.image_url(:thumb)), boat %>
