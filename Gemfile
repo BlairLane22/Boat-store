@@ -41,6 +41,8 @@ gem 'bulma-rails', '~> 0.7.1'
 gem 'gravatar_image_tag', '~> 1.2'
 gem 'punching_bag', '~> 0.6.0'
 
+gem "google-cloud-storage", "~> 1.8", require: false
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
