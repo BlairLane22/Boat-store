@@ -1,46 +1,52 @@
 <% count = 0 %>
 
-<% @highest_priced.each do |boat| %>
-  <% count += 1 %>
-  <h1 class="title is-3 mt3">Top viewed:</h1>
+<div class="boat-index-grid pt4">
+  <% @highest_viewed.each do |boat| %>
 
-  <div class="boat border-light" style="margin-bottom: 4%;">
-    <div class="boat-thumb">
-      <% if boat.image? %>
-        <%= link_to image_tag(boat.image_url(:thumb)), boat %>
-        <% if boat.condition? %>
-          <div class="condition">
-            <span class="tag is-dark"><%= boat.condition %></span>
-          </div>
+    <% if count == 0 %>
+      <h1 class="title is-3 mt3">Top 5 viewed:</h1>
+    <% end %>
+
+    <% count += 1 %>
+
+    <div class="boat border-light" style="margin-bottom: 4%;">
+      <div class="boat-thumb">
+        <% if boat.image? %>
+          <%= link_to image_tag(boat.image_url(:thumb)), boat %>
+          <% if boat.condition? %>
+            <div class="condition">
+              <span class="tag is-dark"><%= boat.condition %></span>
+            </div>
+          <% end %>
+        <% else %>
+          <p>Product has not image, sorry.</p>
         <% end %>
-      <% else %>
-        <p>Product has not image, sorry.</p>
-      <% end %>
+      </div>
+
+
+      <div class="pa3">
+
+        <h3 class="fw7 f4 title"><%= link_to boat.title.capitalize, boat %></h3>
+
+        <% sold_by = user_signed_in? && current_user.id == boat.user_id  ?  "you"  :  boat.user.name.titleize %>
+        <p class="has-text-gray fg pt1">Sold by <%= sold_by %></p>
+
+        <% if boat.category? %>
+          <p class="has-text-gray fg pt1">Category: <%= boat.category.capitalize %></p>
+        <% end %>
+        <p class="has-text-gray fg pt1">Viewed: <%= boat.hits %> <%= boat.hits == 1 ? "time" : "times" %></p>
+
+        <p class="f3 fw6 has-text-right pt2 price"><%= number_to_currency(boat.price) %></p>
+
+        <% if user_signed_in? && current_user.id == boat.user_id %>
+           <%= link_to 'Edit', edit_boat_path(boat), class: "button is-small" %>
+           <%= link_to 'Delete', boat, method: :delete, data: { confirm: "Are you sure you want to delete #{boat.title.capitalize}?" }, class: "button is-small" %>
+        <% end %>
+
+      </div>
     </div>
-
-
-    <div class="pa3">
-
-      <h3 class="fw7 f4 title"><%= link_to boat.title.capitalize, boat %></h3>
-
-      <% sold_by = user_signed_in? && current_user.id == boat.user_id  ?  "you"  :  boat.user.name.titleize %>
-      <p class="has-text-gray fg pt1">Sold by <%= sold_by %></p>
-
-      <% if boat.category? %>
-        <p class="has-text-gray fg pt1">Category: <%= boat.category.capitalize %></p>
-      <% end %>
-      <p class="has-text-gray fg pt1">Viewed: <%= boat.hits %> <%= boat.hits == 1 ? "time" : "times" %></p>
-
-      <p class="f3 fw6 has-text-right pt2 price"><%= number_to_currency(boat.price) %></p>
-
-      <% if user_signed_in? && current_user.id == boat.user_id %>
-         <%= link_to 'Edit', edit_boat_path(boat), class: "button is-small" %>
-         <%= link_to 'Delete', boat, method: :delete, data: { confirm: "Are you sure you want to delete #{boat.title.capitalize}?" }, class: "button is-small" %>
-      <% end %>
-
-    </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
 
 
 <% if count > 0 %>

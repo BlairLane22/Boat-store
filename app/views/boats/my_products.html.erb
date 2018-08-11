@@ -36,7 +36,7 @@
           <h3 class="fw7 f4 title"><%= link_to boat.title.capitalize, boat %></h3>
 
           <p class="has-text-gray fg pt1">Sold by you</p>
-          <p class="has-text-gray fg pt1">Viewed <%= boat.hits %> times</p>
+          <p class="has-text-gray fg pt1">Viewed: <%= boat.hits %> times</p>
 
           <% t = Time.parse(boat.created_at.to_s) %>
           <p class="has-text-gray fg pt1">Created: <%= time_ago_in_words(t) %> ago </p>
